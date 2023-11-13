@@ -30,7 +30,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Set Image Version
-        run: echo "IMAGE_VERSION=$(echo ${{ github.ref }}#refs/heads/} | tr / -)" >> $GITHUB_ENV
+        run: echo "IMAGE_VERSION=$(echo ${{ github.ref }} | sed 's/refs\/heads\///' | tr / -)" >> $GITHUB_ENV
+
       -
         name: Build Image
         uses: docker/build-push-action@v3

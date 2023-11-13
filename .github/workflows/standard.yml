@@ -7,7 +7,8 @@ on:
   workflow_dispatch: {}
 
 env:
-  DTC_VERSION: main
+  DTC_VERSION: v3.1.1
+  IMAGE_VERSION: v1.0.0
 jobs:
 
   docker:
@@ -36,7 +37,7 @@ jobs:
           build-args: DTC_VERSION=${{ env.DTC_VERSION }}
           load: true
           # TODO Make tag/version dependent on branch (push normal version only when on main branch, otherwise derive temporary version from branch name/datetime/commit-id/...)
-          tags: jb090979/doctoolchain:${{ env.DTC_VERSION }}
+          tags: jb090979/doctoolchain:${{ env.IMAGE_VERSION }}
       -
         name: Test Image
         run: |
@@ -44,7 +45,7 @@ jobs:
             --rm \
             -v ${PWD}/test:/workspace \
             -w /workspace \
-            jb090979/doctoolchain:${{ env.DTC_VERSION }} \
+            jb090979/doctoolchain:${{ env.IMAGE_VERSION }} \
             bash -c "set -eu; test -w /etc/environment && ls -l /etc/environment; doctoolchain . tasks"
       -
         name: Push Image
@@ -52,4 +53,4 @@ jobs:
         with:
           context: docker
           push: true
-          tags: jb090979/doctoolchain:${{ env.DTC_VERSION }}
+          tags: jb090979/doctoolchain:${{ env.IMAGE_VERSION }}

@@ -3,12 +3,11 @@ name: Build and push 'image' to Docker
 on:
   push:
     branches:
-      - 'main'
+      - '*'
+    tags:
+      - '*'
   workflow_dispatch: {}
 
-env:
-  DTC_VERSION: v3.1.1
-  IMAGE_VERSION: v1.0.0
 jobs:
 
   docker:
@@ -30,11 +29,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: Set Image Version
+        run: echo "IMAGE_VERSION=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+      -
         name: Build Image
         uses: docker/build-push-action@v3
         with:
           context: docker
-          build-args: DTC_VERSION=${{ env.DTC_VERSION }}
           load: true
           # TODO Make tag/version dependent on branch (push normal version only when on main branch, otherwise derive temporary version from branch name/datetime/commit-id/...)
           tags: jb090979/doctoolchain:${{ env.IMAGE_VERSION }}
@@ -52,5 +53,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: docker
-          push: true
+          push: ${{ startsWith(GITHUB_REF, 'refs/tags/') }}
           tags: jb090979/doctoolchain:${{ env.IMAGE_VERSION }}

@@ -50,7 +50,7 @@ RUN yarn add @mermaid-js/mermaid-cli@$VERSION
 
 ENV GRADLE_USER_HOME=/home/dtcuser/.gradle
 
-ARG DTC_VERSION
+ARG DTC_VERSION=v3.1.1
 RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  && \
         cd docToolchain && \
         git fetch --tags && \

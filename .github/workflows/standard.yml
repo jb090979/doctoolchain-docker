@@ -3,11 +3,11 @@ name: Build and push 'image' to Docker
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
   workflow_dispatch: {}
 
 env:
-  DTC_VERSION: latest
+  DTC_VERSION: v1.0.0
 jobs:
 
   docker:
@@ -36,7 +36,7 @@ jobs:
           build-args: DTC_VERSION=${{ env.DTC_VERSION }}
           load: true
           # TODO Make tag/version dependent on branch (push normal version only when on main branch, otherwise derive temporary version from branch name/datetime/commit-id/...)
-          tags: jb090979/doctoolchain:main
+          tags: jb090979/doctoolchain:${{ env.DTC_VERSION }}
       -
         name: Test Image
         run: |

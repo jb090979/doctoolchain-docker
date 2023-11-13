@@ -1,0 +1,1 @@
+alias mmdc="/home/dtcuser/node_modules/.bin/mmdc --puppeteerConfigFile /puppeteer-config.json"

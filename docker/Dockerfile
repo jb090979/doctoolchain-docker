@@ -29,7 +29,7 @@ ENV PATH=$PATH:/opt/pandoc-3.0.1/bin/
 ENV CHROME_BIN="/usr/bin/chromium-browser" \
     PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true"
 
-ARG VERSION=10.6.0
+ARG VERSION
 
 ADD install-dependencies.sh install-dependencies.sh
 RUN chmod 755 install-dependencies.sh && /bin/sh install-dependencies.sh
@@ -50,7 +50,7 @@ RUN yarn add @mermaid-js/mermaid-cli@$VERSION
 
 ENV GRADLE_USER_HOME=/home/dtcuser/.gradle
 
-ARG DTC_VERSION=v2.2.1
+ARG DTC_VERSION=v3.1.1
 RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  && \
         cd docToolchain && \
         git fetch --tags && \

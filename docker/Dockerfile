@@ -29,7 +29,7 @@ ENV PATH=$PATH:/opt/pandoc-3.0.1/bin/
 ENV CHROME_BIN="/usr/bin/chromium-browser" \
     PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true"
 
-ARG VERSION
+ARG VERSION=10.6.0
 
 ADD install-dependencies.sh install-dependencies.sh
 RUN chmod 755 install-dependencies.sh && /bin/sh install-dependencies.sh

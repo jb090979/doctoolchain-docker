@@ -5,5 +5,5 @@ if not "%1" == "" (
 )
 
 
-docker run --rm -e JAVA_TOOL_OPTIONS="-Dplantuml.include.path=\"/project/src/docs/arc42/chapters\""  --entrypoint /bin/bash -it -v %cd%:/project mydoc_v2.2.1 %DTC_COMMAND%
+docker run --rm -e JAVA_TOOL_OPTIONS="-Dplantuml.include.path=\"/project/src/docs/arc42/chapters\""  --entrypoint /bin/bash -it -v %cd%:/project mydoc_v3.1.1 %DTC_COMMAND%
 

@@ -1,0 +1,127 @@
+:jbake-title: Introduction and Goals
+:jbake-type: page_toc
+:jbake-status: published
+:jbake-menu: arc42
+:jbake-order: 1
+:filename: /chapters/01_introduction_and_goals.adoc
+ifndef::imagesdir[:imagesdir: ../../images]
+
+:toc:
+
+ifndef::imagesdir[:imagesdir: ../images]
+
+[[section-introduction-and-goals]]
+== Introduction and Goals
+
+
+
+=== Requirements Overview
+
+This is an empty Arc42 Asciidoc template. I just added some diagrams of different types in order to test docToolchain generation with my docker file.
+
+
+The next image tests mermaid support:
+[mermaid, sequenceDiagram, png, background="FFFFFF"]
+....
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>Bob: Hello Bob, how are you?
+    Bob-->>Alice: Great!
+....
+
+The next image tests plantuml support:
+[plantuml, diagram-classes, png]   
+....
+@startuml
+class BlockProcessor
+class DiagramBlock
+class DitaaBlock
+class PlantUmlBlock
+
+BlockProcessor <|-- DiagramBlock
+DiagramBlock <|-- DitaaBlock
+DiagramBlock <|-- PlantUmlBlock
+@enduml
+....
+
+The next images test plantuml preprocessor support!
+
+Include:
+
+[plantuml, target=include_example, format=svg]
+....
+@startuml
+!include Images.puml!LoopExample
+@enduml
+....
+
+parameterized include with only 3 users:
+
+[plantuml, target=include_example2, format=svg]
+....
+@startuml
+!$maxSUsers = 3
+!include Images.puml!LoopExample
+@enduml
+....
+
+include an image that call a method.
+
+[plantuml, target=include_example3, format=svg]
+....
+@startuml
+!include Images.puml!DotTable
+@enduml
+....
+
+here is an example how to colorize swimlanes in activity diagram.
+
+[plantuml, target=include_example4, format=svg]
+....
+@startuml
+!include Images.puml!ColoredSwimLane
+@enduml
+....
+
+
+
+
+The next image tests ditaa support:
+[ditaa, ditaa_example, png]   
+....
++---------+  /--------\   +-------+
+| cBLU    +--+cAAA    +---+Version|
+|         |  |  Data  |   |   V3  |
+|    +----+  |  Base  |   |cRED{d}|
+|    |cPNK|  |     {s}|   +-------+
+|    |    |  \---+----/
++----+----+    
+....
+
+The next image tests bytefield support:
+[bytefield, target=bytefield_svg_example, format=svg]   
+....
+(def svg-attrs {:style "background-color:white"})
+(draw-column-headers)
+(doseq [val (range 30)]
+  (draw-box val))
+....
+
+
+
+
+=== Quality Goals
+
+
+
+=== Stakeholders
+
+
+
+[options="header",cols="1,2,2"]
+|===
+|Role/Name|Contact|Expectations
+| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
+| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+|===

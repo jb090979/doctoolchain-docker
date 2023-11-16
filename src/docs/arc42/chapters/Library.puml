@@ -1,0 +1,28 @@
+@startuml(id=TableRow)
+
+!procedure $createRow($start, $nofColumns, $cellName)
+  !while $nofColumns!=0
+    !$port = $cellName + '_' + %string($start)
+    <td port='$port' >$cellName $start</td>
+    !$nofColumns = $nofColumns - 1
+    !$start = $start + 1
+  !endwhile
+!endprocedure
+
+@enduml
+
+
+@startuml(id=colorizeSwimLanes)
+!procedure $colorizeSwimLanes($lanes, $color1, $color2)
+  !$count = 0
+  !foreach $actor in $lanes
+    !$count = $count + 1
+    !$modulo = $count - (2*($count/2))
+    !if (($modulo) == 0)
+         |$color1|$actor|
+    !else
+         |$color2|$actor|
+    !endif
+  !endfor
+!endprocedure
+@enduml

@@ -45,8 +45,12 @@ ENV HOME=/home/dtcuser
 ADD puppeteer-config.json  /puppeteer-config.json
 ADD mmdc.sh /var/mmdc
 RUN cp /var/mmdc /home/dtcuser/mmdc && chmod 755 /home/dtcuser/mmdc
+ADD bytefield-svg.sh /var/bytefield-svg
+RUN cp /var/bytefield-svg /home/dtcuser/bytefield-svg && chmod 755 /home/dtcuser/bytefield-svg
+
 
 RUN yarn add @mermaid-js/mermaid-cli@$VERSION
+RUN npm install bytefield-svg
 
 ENV GRADLE_USER_HOME=/home/dtcuser/.gradle
 

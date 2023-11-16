@@ -1,0 +1,57 @@
+@startuml(id=LoopExample) Loop Example
+!$maxSUsers ?= 5
+!$count = 0
+!while $count<$maxSUsers
+    !$name = 'User' + $count
+    "Super User" --> $name: say Hello
+    !$count = $count + 1
+!endwhile
+@enduml
+
+@startuml (id=ColoredSwimLane)
+!include Library.puml!colorizeSwimLanes
+!$foo = { "actors" : [ "Emma", "Peter", "Anna"]  }
+   $colorizeSwimLanes($foo.actors, "#AntiqueWhite", "#DodgerBlue")
+
+  '|$foo.actors[0]| you can also use the json entry
+  |Emma|
+  start;
+     : Peter tell Anna a joke! ;
+  |Peter|
+     : When God said, “Let there be light!”\n Chuck Norris said, “Say Please.”;
+  |Anna|
+      : Ha Ha Ha! Not funny!;
+   stop
+@enduml
+
+
+@startuml(id=DotTable) Dot Table
+!include Library.puml!TableRow
+
+'set if unset
+!$nofColumns ?= 10
+
+digraph foo {
+   parent [
+   shape=plaintext
+   label=<
+     <table border='0' cellborder='1'>
+       <tr>
+            $createRow(1,$nofColumns,'RowA')
+       </tr>
+       <tr>
+           $createRow(2,$nofColumns,'RowB')
+       </tr>
+     </table>
+  >];
+
+
+  boxA7 [shape=box label="Box A7"]
+  boxB7 [shape=box label="Box B7" ]
+
+
+  parent:RowA_7  -> boxA7;
+  parent:RowB_7  -> boxB7;
+
+}
+@enduml

@@ -54,7 +54,7 @@ RUN npm install bytefield-svg
 
 ENV GRADLE_USER_HOME=/home/dtcuser/.gradle
 
-ARG DTC_VERSION=v2.2.1
+ARG DTC_VERSION=v3.1.1
 RUN     git clone --branch ng https://github.com/docToolchain/docToolchain.git  && \
         cd docToolchain && \
         git fetch --tags && \
